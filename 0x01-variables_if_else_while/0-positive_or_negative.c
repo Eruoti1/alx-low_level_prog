@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+/*The variable n will store a different value every time you will run this program */
+/*You don’t have to understand what rand, srand, RAND_MAX do.*/
 /**
  * main - Prints a random number and states whether.
  *
