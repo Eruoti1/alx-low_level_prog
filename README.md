@@ -1,1 +1,1 @@
-script that generates the assembly code of a C code and save it in an output file.
+0x02. C - Functions, nested loops
