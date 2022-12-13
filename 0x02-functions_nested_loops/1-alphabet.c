@@ -1,4 +1,4 @@
-nclude "1-alphabet.c"
+#include "main.h"
 /**
  * print_alphabet - prints the english alphabet from a-z.
  *
