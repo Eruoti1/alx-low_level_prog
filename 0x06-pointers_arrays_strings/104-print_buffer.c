@@ -3,56 +3,53 @@
 #include <stdio.h>
 
 /**
- * print_buffer - Prints a buffer 10 bytes at a time, starting with
+ * print_buffer - print a buffer
  *
- *    the byte position, then showing the hex content,
+ * @b: the buffer to print
  *
- *     then displaying printable charcaters.
+ * @size: the number of bytes to print
  *
- * @b: The buffer to be printed.
+ * Description: This function prints the content of of size bytes of the
  *
- * @size: The number of bytes to be printed from the buffer.
+ * buffer pointed to by b. 10 bytes are printed per line, with each line
+ *
+ * prefixed with the position of the first byte, starting at 0. Each line
+ *
+ * shows the heaxadecimal content of the buffer 2 bytes at a time, with
+ *
+ * each pair separated by a space, followed by the content of the buffer
+ *
+ * with non-printable characters shown as a `.'.
+ *
+ * Return: void
  *
  */
 void print_buffer(char *b, int size)
 {
-	int byte, index;
+	int b_pos;
+	int l_pos;
 
-	for (byte = 0; byte < size; byte += 10)
+	for (b_pos = 0; b_pos < size; b_pos += 10)
 	{
-		printf("%08x: ", byte);
-
-		for (index = 0; index < 10; index++)
+		printf("%08x: ", b_pos);
+		for (l_pos = 0; l_pos < 10; ++l_pos)
 		{
-			if ((index + byte) >= size)
-				printf("  ");
+			if (b_pos + l_pos < size)
+				printf("%02x", b[b_pos + l_pos]);
 			else
-				printf("%02x", *(b + index + byte));
-
-			if ((index % 2) != 0 && index != 0)
-				printf(" ");
+				printf("  ");
+			if (l_pos % 2)
+				putchar(' ');
 		}
-
-		for (index = 0; index < 10; index++)
+		for (l_pos = 0; l_pos < 10 && b_pos + l_pos < size; ++l_pos)
 		{
-			if ((index + byte) >= size)
-				break;
-	
-
-		else if (*(b + index + byte) >= 31 &&
-				*(b + index + byte) <= 126)
-			printf("%c", *(b + index + byte));
-
-		else
-			printf(".");
-
+			if (b[b_pos + l_pos] < 32 || b[b_pos + l_pos] > 126)
+				putchar('.');
+			else
+				putchar(b[b_pos + l_pos]);
+		}
+		if (b_pos + l_pos < size)
+			putchar('\n');
 	}
-	if (byte >= size)
-		continue;
-
-	printf("\n");
-	}
-
-	if (size <= 0)
-		printf("\n");
+	putchar('\n');
 }
