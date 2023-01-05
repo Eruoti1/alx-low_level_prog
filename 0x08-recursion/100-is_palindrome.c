@@ -9,7 +9,7 @@
  *
  * Return: length of the string
  */
-int _strlen_recursion(char *s)
+int strlen_no_wilds(char *str)
 {
 	if (*s)
 	{
