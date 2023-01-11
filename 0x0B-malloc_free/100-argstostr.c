@@ -12,7 +12,6 @@
  * Return: ...
  */
 char *argstostr(int ac, char **av)
-char *argstostr(int ac, char **av)
 {
 	int ch = 0, i = 0, j = 0, k = 0;
 	char *s;
@@ -27,7 +26,6 @@ char *argstostr(int ac, char **av)
 			ch++;
 			j++;
 		}
-
 		j = 0;
 		i++;
 	}
@@ -43,13 +41,10 @@ char *argstostr(int ac, char **av)
 			k++;
 			j++;
 		}
+
 		s[k] = '\n';
 
 		j = 0;
 		k++;
-		i++;
+		return (s);
 	}
-	k++;
-	s[k] = '\0';
-	return (s);
-}
