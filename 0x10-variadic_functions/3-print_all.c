@@ -16,7 +16,7 @@ void print_all(const char * const format, ...);
  *
  * @arg: A list of arguments pointing to
  *
- * the character to be printed.
+ *       the character to be printed.
  *
  */
 void print_char(va_list arg)
@@ -26,15 +26,15 @@ void print_char(va_list arg)
 	letter = va_arg(arg, int);
 	printf("%c", letter);
 }
-
 /**
  * print_int - Prints an int.
  *
  * @arg: A list of arguments pointing to
  *
- * an integer to be printed
+ *       the integer to be printed.
  *
  */
+
 void print_int(va_list arg)
 {
 	int num;
@@ -47,7 +47,7 @@ void print_int(va_list arg)
  *
  * @arg: A list of arguments pointing to
  *
- * the float to be printed.
+ *       the float to be printed.
  *
  */
 void print_float(va_list arg)
@@ -62,7 +62,7 @@ void print_float(va_list arg)
  *
  * @arg: A list of arguments pointing to
  *
- * the string to be printed.
+ *       the string to be printed.
  *
  */
 void print_string(va_list arg)
@@ -74,25 +74,28 @@ void print_string(va_list arg)
 	if (str == NULL)
 	{
 		printf("(nil)");
+
 		return;
 	}
+
 	printf("%s", str);
+
 }
 /**
+
  * print_all - Prints anything, followed by a new line.
  *
  * @format: A string of characters representing the argument types.
  *
- * @...: A variable number of arguments to be printed
+ * @...: A variable number of arguments to be printed.
  *
  * Description: Any argument not of type char, int, float,
+ *              or char * is ignored.
  *
- * or char * is ignored.
- *
- * If a string argument is NULL, (nil) is printed instead.
+ *             If a string argument is NULL, (nil) is printed instead.
  *
  */
-void print_all(const char * const format, ...)
+ void print_all(const char * const format, ...)
 {
 	va_list args;
 	int i = 0, j = 0;
@@ -109,20 +112,14 @@ void print_all(const char * const format, ...)
 	while (format && (*(format + i)))
 	{
 		j = 0;
-		while (j < 4 && (*(format + i) != *(funcs[j].symbol)))
-			j++;
-
-		if (j < 4)
-		{
-			printf("%s", separator);
-			funcs[j].print(args);
-			separator = ", ";
-		}
-
-		i++;
-
+		funcs[j].print(args);
+		separator = ", ";
 	}
-	printf("\n");
 
-	va_end(args);
+	i++;
+
+}
+printf("\n");
+
+va_end(args);
 }
