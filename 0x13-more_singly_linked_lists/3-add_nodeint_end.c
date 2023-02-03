@@ -1,25 +1,42 @@
 #include "lists.h"
 
-#include <stdio.h>
+
 
 /**
- * print_listint - Prints all the elements of a listint_t list.
+ * add_nodeint_end - adds a node at the end of list
  *
- * @h: A pointer to the head of the list_t list.
+ * @head: double pointer to the list
  *
- * Return: The number of nodes in the list_t list.
+ * @n: integer added to new node
+ *
+ * Return: new node
  *
  */
-size_t print_listint(const listint_t *h)
+listint_t *add_nodeint_end(listint_t **head, const int n)
 {
-	size_t nodes = 0;
+	listint_t *new;
+	listint_t *last;
 
-	while (h)
+	new = malloc(sizeof(listint_t));
+	if (new == NULL)
+		return (NULL);
+	new->n = n;
+	new->next = NULL;
+
+	if (*head == NULL)
 	{
-		nodes++;
-		printf("%d\n", h->n);
-		h = h->next;
+		*head = new;
+		return (new);
 	}
+	else
+	{
+		last = *head;
+		while (last->next)
+		{
+			last = last->next;
+		}
+		last->next = new;
 
-	return (nodes);
+	}
+	return (new);
 }
